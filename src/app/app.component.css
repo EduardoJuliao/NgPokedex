@@ -1,0 +1,11 @@
+mat-sidenav-container{
+   height: 100vh;
+}
+
+mat-sidenav-container > *{
+   padding: 10px;
+}
+
+mat-sidenav{
+   min-width: 20vw;
+}

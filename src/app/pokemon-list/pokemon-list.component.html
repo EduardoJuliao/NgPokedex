@@ -1,0 +1,7 @@
+<mat-card *ngFor="let pokemon of pokemonList; index as i"
+(click)="selectPokemon(pokemon.url)"
+>
+  <mat-card-title>
+   {{i + 1}} - {{pokemon.name | upperCase}}
+  </mat-card-title>
+</mat-card>

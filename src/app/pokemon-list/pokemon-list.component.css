@@ -1,0 +1,8 @@
+mat-card{
+   margin-bottom: 5px;
+}
+
+mat-card:hover{
+   cursor: pointer;
+   color: blue;
+}
