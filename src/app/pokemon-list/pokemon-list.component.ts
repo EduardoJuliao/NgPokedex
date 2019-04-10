@@ -23,7 +23,6 @@ export class PokemonListComponent implements OnInit {
   ngOnInit() {
     this.ps.getPokemonList(0).subscribe(response => {
       this.pokemonList = this.pokemonList.concat(response.results);
-      console.log(this.pokemonList);
     });
 
     this.ls.loadingStatus.subscribe(value => {

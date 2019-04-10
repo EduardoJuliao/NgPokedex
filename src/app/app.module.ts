@@ -10,6 +10,7 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { UpperCasePipe } from '../pipes/upper-case/upper-case.pipe';
 import { StripPokemonNumberPipe } from '../pipes/strip-pokemon-number/strip-pokemon-number.pipe';
+import { FirstUpperCasePipe } from '../pipes/first-upper-case/first-upper-case.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StripPokemonNumberPipe } from '../pipes/strip-pokemon-number/strip-poke
     PokemonListComponent,
     PokemonDetailComponent,
     UpperCasePipe,
-    StripPokemonNumberPipe
+    StripPokemonNumberPipe,
+    FirstUpperCasePipe
   ],
   imports: [
     BrowserModule,
