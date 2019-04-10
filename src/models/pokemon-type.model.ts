@@ -5,5 +5,5 @@ export interface Type{
 
 export interface PokemonType{
    slot: number;
-   type: Type[];
+   type: Type;
 }
