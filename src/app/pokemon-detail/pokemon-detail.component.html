@@ -1,24 +1,47 @@
 <div *ngIf="pokemon !== undefined">
-  <p>
-    {{ pokemon.name | uppercase }}
-  </p>
-  <p>
-    {{ pokemon.id }}
-  </p>
-  <div>
-    <p *ngFor="let stat of orderedStats()">
-      {{stat.stat.name | firstUpperCase }}: {{stat.base_stat}}
-    </p>
-  </div>
-  <div>
-    <p>
-      types
-    </p>
-    <p *ngFor="let type of pokemon.types">
-      {{type.type.name | firstUpperCase}}
-    </p>
-  </div>
-  <p>
-    <img [src]="pokemon.sprites.front_default">
-  </p>
+  <!-- Poke info -->
+  <mat-grid-list cols="2" rowHeight="30px">
+    <mat-grid-tile> #{{ pokemon.id }} </mat-grid-tile>
+    <mat-grid-tile>
+      {{ pokemon.name | uppercase }}
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br/>
+
+  <!-- Picture -->
+
+  <mat-grid-list cols="1" rowHeight="200px">
+    <mat-grid-tile>
+      <img [src]="pokemon.sprites.front_default" />
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br/>
+
+  <!-- Types -->
+
+  <mat-grid-list cols="2" rowHeight="30px">
+    <mat-grid-tile [colspan]="2">
+      Types
+    </mat-grid-tile>
+    <div *ngFor="let chunks of chunk(pokemon.types, 2)">
+      <mat-grid-tile *ngFor="let type of chunks">
+        {{ type.type.name | firstUpperCase }}
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+  <br/>
+
+  <!-- Stats -->
+
+  <mat-grid-list cols="2" rowHeight="30px">
+    <mat-grid-tile [colspan]="2">
+      Stats
+    </mat-grid-tile>
+    <div *ngFor="let chunks of chunk(orderedStats(), 2)">
+      <mat-grid-tile *ngFor="let stat of chunks">
+        {{ stat.stat.name | firstUpperCase }}:
+        {{ stat.base_stat }}
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
 </div>

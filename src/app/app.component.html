@@ -12,7 +12,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block'}">
+    <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block'}"
+      style="text-align: center;">
       <button type="button" mat-button (click)="sidenav.open()">
           <mat-icon>list</mat-icon>
       </button>
