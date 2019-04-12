@@ -1,3 +1,4 @@
+import { PokemonModel } from './../../models/pokemon.model';
 import { PokemonDetailComponent } from './../pokemon-detail/pokemon-detail.component';
 import { LoadingService } from './../../services/loading.service';
 import { PokeService } from './../../services/poke.service';
@@ -10,7 +11,7 @@ import { StripPokemonNumberPipe } from 'src/pipes/strip-pokemon-number/strip-pok
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  pokemonList: any[] = [];
+  pokemonList: PokemonModel[] = [];
   isSelecting: boolean = false;
   private readonly stripper: StripPokemonNumberPipe;
 
@@ -21,9 +22,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ps.getPokemonList(0).subscribe(response => {
-      this.pokemonList = this.pokemonList.concat(response.results);
-    });
+    this.getPokemonList(0);
 
     this.ls.loadingStatus.subscribe(value => {
       this.isSelecting = value;
@@ -33,5 +32,19 @@ export class PokemonListComponent implements OnInit {
   selectPokemon(url: string) {
     const id = this.stripper.transform(url);
     this.pokeDetail.load(id);
+  }
+
+  public onScroll(){
+    const lastId = this.pokemonList.map(x => x.id).reduce((a,b) => {
+      return Math.max(a, b)
+    });
+    console.log(lastId);
+    this.getPokemonList(lastId)
+  }
+
+  private getPokemonList(lastId: number){
+    this.ps.getPokemonList(lastId).subscribe(response => {
+      this.pokemonList = this.pokemonList.concat(response.results);
+    });
   }
 }

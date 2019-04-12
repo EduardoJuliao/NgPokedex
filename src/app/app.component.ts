@@ -1,5 +1,6 @@
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { LoadingService } from './../services/loading.service';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { Component, Inject } from '@angular/core';
 export class AppComponent {
   isSomethingLoading: boolean = false;
   screenWidth: number;
+
+  @ViewChild(PokemonListComponent) pokemonList: PokemonListComponent;
 
   constructor(private ls: LoadingService) {
     this.screenWidth = window.innerWidth;
@@ -25,5 +28,10 @@ export class AppComponent {
 
   ngOnDestroy(){
     this.ls.loadingStatus.unsubscribe();
+  }
+
+  onScroll(){
+    console.log('scrolled in app')
+    this.pokemonList.onScroll();
   }
 }

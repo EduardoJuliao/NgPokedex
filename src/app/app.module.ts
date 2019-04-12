@@ -2,6 +2,7 @@ import { LoadingService } from './../services/loading.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { PokeService } from 'src/services/poke.service';
@@ -24,7 +25,8 @@ import { FirstUpperCasePipe } from '../pipes/first-upper-case/first-upper-case.p
   imports: [
     BrowserModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    InfiniteScrollModule
   ],
   providers: [PokeService, LoadingService],
   bootstrap: [AppComponent]

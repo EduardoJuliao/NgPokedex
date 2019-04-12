@@ -1,18 +1,25 @@
 <mat-sidenav-container>
-  <mat-progress-bar mode="indeterminate" [ngStyle]="{display: isSomethingLoading ? 'block' : 'none'}"></mat-progress-bar>
   <mat-sidenav
     #sidenav
     [opened]="screenWidth > 840"
     [mode]="screenWidth > 840 ? 'side' : 'over'"
+    infinite-scroll
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
   >
     <app-pokemon-list [pokeDetail]="pokeDetail"></app-pokemon-list>
   </mat-sidenav>
-  <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block' }">
-    <button type="button" mat-button (click)="sidenav.open()">
-      Toggle sidenav when display is block
-    </button>
-  </div>
+
   <mat-sidenav-content>
+    <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block' }">
+      <button type="button" mat-button (click)="sidenav.open()">
+          <mat-icon>list</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar
+      mode="indeterminate"
+      [ngStyle]="{ display: isSomethingLoading ? 'block' : 'none' }"
+    ></mat-progress-bar>
     <app-pokemon-detail #pokeDetail></app-pokemon-detail>
   </mat-sidenav-content>
 </mat-sidenav-container>
