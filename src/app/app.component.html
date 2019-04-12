@@ -8,7 +8,7 @@
     (scrolled)="onScroll()"
     [ngStyle]="{width: screenWidth > 840 ? '30vw' : '100vw'}"
   >
-    <app-pokemon-list [pokeDetail]="pokeDetail" (onSelected)="sidenav.close()"></app-pokemon-list>
+    <app-pokemon-list [pokeDetail]="pokeDetail" (onSelected)="screenWidth < 840 ? sidenav.close(): null"></app-pokemon-list>
   </mat-sidenav>
 
   <mat-sidenav-content>

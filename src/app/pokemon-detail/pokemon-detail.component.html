@@ -19,11 +19,11 @@
 
   <!-- Types -->
 
-  <mat-grid-list cols="2" rowHeight="30px">
-    <mat-grid-tile [colspan]="2">
+  <mat-grid-list [cols]="pokemon.types.length" rowHeight="30px">
+    <mat-grid-tile [colspan]="pokemon.types.length">
       Types
     </mat-grid-tile>
-    <div *ngFor="let chunks of chunk(pokemon.types, 2)">
+    <div *ngFor="let chunks of chunk(pokemon.types, pokemon.types.length)">
       <mat-grid-tile *ngFor="let type of chunks">
         {{ type.type.name | firstUpperCase }}
       </mat-grid-tile>
