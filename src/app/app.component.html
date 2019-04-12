@@ -6,12 +6,13 @@
     infinite-scroll
     [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()"
+    [ngStyle]="{width: screenWidth > 840 ? '30vw' : '100vw'}"
   >
-    <app-pokemon-list [pokeDetail]="pokeDetail"></app-pokemon-list>
+    <app-pokemon-list [pokeDetail]="pokeDetail" (onSelected)="sidenav.close()"></app-pokemon-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block' }">
+    <div [ngStyle]="{ display: screenWidth > 840 ? 'none' : 'block'}">
       <button type="button" mat-button (click)="sidenav.open()">
           <mat-icon>list</mat-icon>
       </button>

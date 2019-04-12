@@ -2,7 +2,7 @@ import { PokemonModel } from './../../models/pokemon.model';
 import { PokemonDetailComponent } from './../pokemon-detail/pokemon-detail.component';
 import { LoadingService } from './../../services/loading.service';
 import { PokeService } from './../../services/poke.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StripPokemonNumberPipe } from 'src/pipes/strip-pokemon-number/strip-pokemon-number.pipe';
 
 @Component({
@@ -16,6 +16,7 @@ export class PokemonListComponent implements OnInit {
   private readonly stripper: StripPokemonNumberPipe;
 
   @Input('pokeDetail') pokeDetail: PokemonDetailComponent;
+  @Output('onSelected') onSelected = new EventEmitter();
 
   constructor(private ps: PokeService, private ls: LoadingService) {
     this.stripper = new StripPokemonNumberPipe();
@@ -32,6 +33,7 @@ export class PokemonListComponent implements OnInit {
   selectPokemon(url: string) {
     const id = this.stripper.transform(url);
     this.pokeDetail.load(id);
+    this.onSelected.next();
   }
 
   public onScroll(){
@@ -43,7 +45,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   private getPokemonList(lastId: number){
-    this.ps.getPokemonList(lastId).subscribe(response => {
+    this.ps.getPokemonList(lastId, 1000).subscribe(response => {
       this.pokemonList = this.pokemonList.concat(response.results);
     });
   }
